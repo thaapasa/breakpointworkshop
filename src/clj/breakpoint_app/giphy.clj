@@ -52,3 +52,9 @@
       (http/get)
       (parse-data)))
 
+
+(defn search
+  [text]
+  (-> (query-url "search" {:q text})
+      (http/get)
+      (parse-data)))
