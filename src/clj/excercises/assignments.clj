@@ -10,6 +10,9 @@
 ;; - then divides it by 2, producing a floating-point value
 
 (defn inc-and-divide [x]
+  (-> x
+    (inc)
+    (/ 2))
   )
 
 ;; should return 3.5
@@ -21,6 +24,7 @@
 ;; - use (Math/pow) for the exponent calculation
 
 (defn circle-area [rad]
+  (* (Math/pow rad 2) (Math/PI))
   )
 
 ;; should return 314.1592653589793
@@ -31,6 +35,7 @@
 (def radius-vec [10 3 4.3 2])
 
 (defn calculate-areas [radius-vec]
+  (map circle-area radius-vec)
   )
 
 ;; should return (314.1592653589793 28.274333882308138 58.08804816487527 12.566370614359172)
@@ -38,8 +43,10 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; calculate average of the radiuses
+;; note: div/0 if (= (count xs) 0)
 (defn avg-of-xs [xs]
-  )
+  (/ (reduce (fn [a b] (+ a b)) 0 xs) (count xs))
+)
 
 ;; should return 103.27200450513048
 (avg-of-xs area-vec)
