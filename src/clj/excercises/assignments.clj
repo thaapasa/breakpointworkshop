@@ -11,8 +11,8 @@
 
 (defn inc-and-divide [x]
   (-> x
-    (inc)
-    (/ 2))
+    inc
+    (/ 2.0))
   )
 
 ;; should return 3.5
@@ -61,7 +61,10 @@
                      "long one"])
 
 (defn capitalize-short-enough [strings]
-  )
+  (->> strings
+    (filter (fn [x] (<= (count x) 5)))
+    (map clojure.string/capitalize)
+    ))
 
 ;; should return ["Pizza" "Beer" "Juicy"]
 (capitalize-short-enough vec-of-strings)
